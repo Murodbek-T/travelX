@@ -1,0 +1,9 @@
+@use "../abstract/mixins";
+@use "../abstract/variables";
+
+.slide5 {
+  height: 100vh;
+  width: 100vw;
+  @include mixins.bcgEffect;
+  background-image: url("../../images/05.jpg");
+}

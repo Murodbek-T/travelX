@@ -1,0 +1,102 @@
+@use "../abstract/variables";
+@use "../abstract/mixins";
+
+.header {
+  position: relative;
+
+  &_content {
+    position: absolute;
+    top: 40px;
+    bottom: 40px;
+    left: 70px;
+    right: 70px;
+    z-index: 1000 !important;
+
+    &_nav {
+      @include mixins.display(space-between, center);
+
+      ul {
+        @include mixins.display(space-between, center);
+        gap: 50px;
+
+        a {
+          position: relative;
+        }
+        a::before {
+          content: "";
+          position: absolute;
+          height: 5px;
+          width: 100%;
+          border-bottom: 2px solid variables.$white;
+          bottom: -5px;
+          transform: scale(0);
+          transition: transform 0.3s;
+          transform-origin: right;
+        }
+
+        a:hover::before {
+          transform: scale(1);
+          transition: transform 0.3s;
+          transform-origin: left;
+        }
+      }
+    }
+
+    &_middle {
+      z-index: 1000;
+      .icons {
+        @include mixins.display(space-between, flex-start);
+        gap: 25px;
+        flex-direction: column;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+      }
+
+      .swiper-scrollbar {
+        position: absolute;
+        top: 50%;
+        transform: translate(1250px, -50%) rotateZ(90deg);
+        width: 250px;
+        background-color: variables.$gray;
+      }
+    }
+
+    &_bottom {
+      z-index: 1000;
+      .see-more {
+        color: variables.$gray;
+        position: absolute;
+        bottom: 0px;
+        left: 10px;
+        transform-origin: left;
+        transform: rotateZ(-90deg);
+        cursor: pointer;
+      }
+
+      .buttons {
+        color: variables.$white;
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        @include mixins.display(space-between, flex-start);
+        flex-direction: column;
+        gap: 25px;
+
+        .prev-next {
+          @include mixins.display(space-between, center);
+          width: 50px;
+          cursor: pointer;
+
+          i {
+            font-size: 24px;
+          }
+        }
+
+        .pagination {
+          font-size: 24px;
+        }
+      }
+    }
+  }
+}
